@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 st.set_page_config(
     page_title="My Streamlit Dashboard",
@@ -10,7 +11,9 @@ st.set_page_config(
 # LOAD
 @st.cache_data
 def load_data():
-    df = pd.read_csv("dataset.csv")
+    BASE_DIR = Path(__file__).parent
+    csv_path = BASE_DIR / "dataset.csv"
+    df = pd.read_csv(csv_path)
     return df
 
 df = load_data()
